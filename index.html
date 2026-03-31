@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OmniAgent</title>
+    <style>
+        body { background: #0a0a0a; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        canvas { border-radius: 50%; }
+        #chat { position: absolute; bottom: 20px; width: 300px; }
+        input { width: 100%; padding: 10px; background: #111; color: #00ff88; border: 1px solid #00ff88; border-radius: 20px; }
+    </style>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <canvas id="face" width="300" height="300"></canvas>
+    <div id="chat"><input placeholder="Speak to the entity..." /></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Three.js haunter face placeholder
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('face'), alpha: true});
+        renderer.setSize(300, 300);
+        
+        const geometry = new THREE.SphereGeometry(1, 32, 32);
+        const material = new THREE.MeshBasicMaterial({color: 0x00ff88, wireframe: true});
+        const sphere = new THREE.Mesh(geometry, material);
+        scene.add(sphere);
+        camera.position.z = 3;
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            sphere.rotation.x += 0.005;
+            sphere.rotation.y += 0.005;
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+</body>
+</html>

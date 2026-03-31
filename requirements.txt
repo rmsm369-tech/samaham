@@ -1,0 +1,6 @@
+groq
+python-telegram-bot
+requests
+feedparser
+python-dotenv
+huggingface_hub
